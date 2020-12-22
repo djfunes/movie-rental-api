@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "b9d85d10-7b74-4fca-871e-eead5035a6a7",
+		"name": "movie-rental-api",
+		"description": "This collection contains basic API testing for the technical challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"email\":\"admin@mymail.com\",\n\t\"password\":\"admin123\",\n\t\"role\":[\"admin\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				},
+				"description": "Sign up into movie-rental-api"
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				},
+				"description": "Return Bearer access token to be used in all movie-rental-api methods that needs authorization"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllMovies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"all"
+					]
+				},
+				"description": "Get all movies, not necessary to be logged in"
+			},
+			"response": []
+		},
+		{
+			"name": "createMovie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODA5NzY2NiwiZXhwIjoxNjA4MTg0MDY2fQ.CfDCBCZy_E8h91KNetX59a8eGVajUsKfNRWnqrIX_XBRfnwmrJe6VaC-XlAF4fJRhB0znjFCH54CTlWyKdZJ6g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Inception\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies"
+					]
+				},
+				"description": "Creates a new Movie, it can be only with the name"
+			},
+			"response": []
+		},
+		{
+			"name": "getMovie",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"1"
+					]
+				},
+				"description": "Retrieves all data for the movie id provided"
+			},
+			"response": []
+		},
+		{
+			"name": "updateMovie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODYyMDMyMSwiZXhwIjoxNjA4NzA2NzIxfQ.thMYiCwoghHKMJIDrNsdd4Yu4RqrFFxShNAE_Bd2HTUfzt4NVdUBESbeCnr8p3LRQCaI68lwmrPgiLacqgh4eA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Titanic\",\n\t\"description\":\" In the year 1912 a young poor guy, Jack, travels by the gorgeous ship Titanic from London to New York with a big dream. On board he meets a fabulous, wealthy girl\",\n    \"stock\":15,\n    \"rentalprice\":3.25,\n    \"saleprice\":23.99,\n    \"available\":\"true\",\n    \"penaltyrate\":0.35\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"1"
+					]
+				},
+				"description": "Updates all movie fields for the provided id"
+			},
+			"response": []
+		},
+		{
+			"name": "enableDisableMovie",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODYyMDMyMSwiZXhwIjoxNjA4NzA2NzIxfQ.thMYiCwoghHKMJIDrNsdd4Yu4RqrFFxShNAE_Bd2HTUfzt4NVdUBESbeCnr8p3LRQCaI68lwmrPgiLacqgh4eA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/movies/1/true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"1",
+						"true"
+					]
+				},
+				"description": "Update available status"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMovie",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODA5NzY2NiwiZXhwIjoxNjA4MTg0MDY2fQ.CfDCBCZy_E8h91KNetX59a8eGVajUsKfNRWnqrIX_XBRfnwmrJe6VaC-XlAF4fJRhB0znjFCH54CTlWyKdZJ6g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/movies/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"4"
+					]
+				},
+				"description": "Delete a movie permanently for the provided id"
+			},
+			"response": []
+		},
+		{
+			"name": "likeMovie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODYyMDMyMSwiZXhwIjoxNjA4NzA2NzIxfQ.thMYiCwoghHKMJIDrNsdd4Yu4RqrFFxShNAE_Bd2HTUfzt4NVdUBESbeCnr8p3LRQCaI68lwmrPgiLacqgh4eA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":1,\r\n    \"movie\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies",
+						"like"
+					]
+				},
+				"description": "Assignes liked status from a User to a movie (also check if movie is already liked)"
+			},
+			"response": []
+		},
+		{
+			"name": "saveRental",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODIyMDMzMywiZXhwIjoxNjA4MzA2NzMzfQ.49Ry8CaFGt4IDk5cJSWexxwaioVwLZb7bj-oXKyHRrOGQNLyCs0bfMz4K9ACtsY21AuAkj1SXtKeLMoCwuvHqQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":\"1\",\r\n    \"movie\":\"1\",\r\n    \"days\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/rental",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rental"
+					]
+				},
+				"description": "register a rent transaction for a movie to user, based on number of days to rent"
+			},
+			"response": []
+		},
+		{
+			"name": "updateRental",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODM2MzYwOSwiZXhwIjoxNjA4NDUwMDA5fQ.npefSLdeY6jmu7LJBaSAisGdUGONjusjQuFTWj3uMhADFy6XEMf6Zv9lPoomCqe9JuLYN9o15Uw7BriKSfFsiw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"returnedDate\":\"2020-12-23T18:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/rental/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rental",
+						"1"
+					]
+				},
+				"description": "Updates the record of a rental, based on the id provided(rental) also checks dates and penalty rates."
+			},
+			"response": []
+		},
+		{
+			"name": "saveSale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYwODYyMDMyMSwiZXhwIjoxNjA4NzA2NzIxfQ.thMYiCwoghHKMJIDrNsdd4Yu4RqrFFxShNAE_Bd2HTUfzt4NVdUBESbeCnr8p3LRQCaI68lwmrPgiLacqgh4eA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\":1,\r\n    \"movie\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales"
+					]
+				},
+				"description": "Registerd the sales of the movies, updating the stock"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
