@@ -8,6 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(	name = "users", 
 		uniqueConstraints = { 
@@ -37,6 +39,14 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	Set<Rental> rentals;
+		
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+    Set<Sale> sales;
 
 	public User() {
 	}
@@ -86,4 +96,23 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+
+	public Set<Rental> getRentals() {
+		return this.rentals;
+	}
+
+	public void setRentals(Set<Rental> rentals) {
+		this.rentals = rentals;
+	}
+
+	public Set<Sale> getSales() {
+		return this.sales;
+	}
+
+	public void setSales(Set<Sale> sales) {
+		this.sales = sales;
+	}
+	
+
 }
